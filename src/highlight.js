@@ -3,7 +3,8 @@ Syntax highlighting with language autodetection.
 http://softwaremaniacs.org/soft/highlight/
 */
 
-function() {
+define([], function(){
+  return function() {
 
   /* Utility functions */
 
@@ -584,12 +585,13 @@ function() {
 
   // Utility functions
   this.inherit = function(parent, obj) {
-    var result = {}
+    var result = {};
     for (var key in parent)
       result[key] = parent[key];
     if (obj)
       for (var key in obj)
         result[key] = obj[key];
     return result;
-  }
-}
+  };
+};
+});
