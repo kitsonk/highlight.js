@@ -519,7 +519,7 @@ define([], function(module){
 
   /* Interface definition */
 
-  var hljs;
+  var hljs = {};
 
   hljs.LANGUAGES = languages;
   hljs.highlight = highlight;
