@@ -592,5 +592,7 @@ define([], function(module){
     return result;
   };
 
-  return this;
+  return {
+    highlight: highlight
+  };
 });
