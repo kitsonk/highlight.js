@@ -519,70 +519,72 @@ define([], function(module){
 
   /* Interface definition */
 
-  this.LANGUAGES = languages;
-  this.highlight = highlight;
-  this.highlightAuto = highlightAuto;
-  this.fixMarkup = fixMarkup;
-  this.highlightBlock = highlightBlock;
-  this.initHighlighting = initHighlighting;
-  this.initHighlightingOnLoad = initHighlightingOnLoad;
+  var hljs;
+
+  hljs.LANGUAGES = languages;
+  hljs.highlight = highlight;
+  hljs.highlightAuto = highlightAuto;
+  hljs.fixMarkup = fixMarkup;
+  hljs.highlightBlock = highlightBlock;
+  hljs.initHighlighting = initHighlighting;
+  hljs.initHighlightingOnLoad = initHighlightingOnLoad;
 
   // Common regexps
-  this.IDENT_RE = '[a-zA-Z][a-zA-Z0-9_]*';
-  this.UNDERSCORE_IDENT_RE = '[a-zA-Z_][a-zA-Z0-9_]*';
-  this.NUMBER_RE = '\\b\\d+(\\.\\d+)?';
-  this.C_NUMBER_RE = '(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'; // 0x..., 0..., decimal, float
-  this.BINARY_NUMBER_RE = '\\b(0b[01]+)'; // 0b...
-  this.RE_STARTERS_RE = '!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~';
+  hljs.IDENT_RE = '[a-zA-Z][a-zA-Z0-9_]*';
+  hljs.UNDERSCORE_IDENT_RE = '[a-zA-Z_][a-zA-Z0-9_]*';
+  hljs.NUMBER_RE = '\\b\\d+(\\.\\d+)?';
+  hljs.C_NUMBER_RE = '(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'; // 0x..., 0..., decimal, float
+  hljs.BINARY_NUMBER_RE = '\\b(0b[01]+)'; // 0b...
+  hljs.RE_STARTERS_RE = '!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~';
 
   // Common modes
-  this.BACKSLASH_ESCAPE = {
+  hljs.BACKSLASH_ESCAPE = {
     begin: '\\\\[\\s\\S]', relevance: 0
   };
-  this.APOS_STRING_MODE = {
+  hljs.APOS_STRING_MODE = {
     className: 'string',
     begin: '\'', end: '\'',
     illegal: '\\n',
-    contains: [this.BACKSLASH_ESCAPE],
+    contains: [hljs.BACKSLASH_ESCAPE],
     relevance: 0
   };
-  this.QUOTE_STRING_MODE = {
+  hljs.QUOTE_STRING_MODE = {
     className: 'string',
     begin: '"', end: '"',
     illegal: '\\n',
-    contains: [this.BACKSLASH_ESCAPE],
+    contains: [hljs.BACKSLASH_ESCAPE],
     relevance: 0
   };
-  this.C_LINE_COMMENT_MODE = {
+  hljs.C_LINE_COMMENT_MODE = {
     className: 'comment',
     begin: '//', end: '$'
   };
-  this.C_BLOCK_COMMENT_MODE = {
+  hljs.C_BLOCK_COMMENT_MODE = {
     className: 'comment',
     begin: '/\\*', end: '\\*/'
   };
-  this.HASH_COMMENT_MODE = {
+  hljs.HASH_COMMENT_MODE = {
     className: 'comment',
     begin: '#', end: '$'
   };
-  this.NUMBER_MODE = {
+  hljs.NUMBER_MODE = {
     className: 'number',
-    begin: this.NUMBER_RE,
+    begin: hljs.NUMBER_RE,
     relevance: 0
   };
-  this.C_NUMBER_MODE = {
+  hljs.C_NUMBER_MODE = {
     className: 'number',
-    begin: this.C_NUMBER_RE,
+    begin: hljs.C_NUMBER_RE,
     relevance: 0
   };
-  this.BINARY_NUMBER_MODE = {
+  hljs.BINARY_NUMBER_MODE = {
     className: 'number',
-    begin: this.BINARY_NUMBER_RE,
+    begin: hljs.BINARY_NUMBER_RE,
     relevance: 0
   };
 
   // Utility functions
-  this.inherit = function(parent, obj) {
+  hljs.inherit = function(parent, obj) {
     var result = {};
     for (var key in parent)
       result[key] = parent[key];
@@ -592,7 +594,5 @@ define([], function(module){
     return result;
   };
 
-  return {
-    highlight: highlight
-  };
+  return hljs;
 });
