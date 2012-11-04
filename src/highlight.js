@@ -3,7 +3,7 @@ Syntax highlighting with language autodetection.
 http://softwaremaniacs.org/soft/highlight/
 */
 
-define(["module"], function(module){
+define([], function(module){
   /* Utility functions */
 
   function escape(value) {
@@ -592,5 +592,5 @@ define(["module"], function(module){
     return result;
   };
 
-  module = this;
+  return this;
 });
